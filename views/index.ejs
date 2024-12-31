@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="/javascripts/script.js"></script>
+
+</head>
+<body>
+    <div class="main w-full min-h-screen bg-zinc-900">
+        <div class="form p-10 text-white">
+            <form action="/create" method="POST">
+                <input class= "block w-full rounded-md px-5 py-2 bg-zinc-800" type="text" placeholder="Title of the task"name="title">
+                <textarea class= "block w-full rounded-md px-5 py-2 mt-2 resize-none bg-zinc-800" placeholder="Write your task here" name="details"></textarea>
+                <input class="mt-2 px-5 py-2 bg-blue-700 rounded-md border-none" type="submit" value="Add Task">
+            </form>
+        </div>
+        <% if(files.length > 0 ){ %>
+            <div class="tasks flex gap-3 flex-wrap px-5 py-10 ">
+                <% files.forEach((val) => { %>
+                    <div class="task w-72 px-4 py-4 bg-zinc-800 mt-4 rounded-md">
+                        <h1 class="text-white tracking-tighter"><%= val%></h1>
+                        <a class="text-blue-500 inline-block mt-3" href="/task/<%= val.split(' ').join('') %>">read more</a>
+                    </div>
+                <% }) %>    
+            </div>
+        <% } else {  %>
+            <h3 class="text-zinc-600 ml-10">No tasks yet</h3>
+        <% } %>
+    </div>
+   
+</body>
+</html>
